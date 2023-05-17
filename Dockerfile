@@ -1,9 +1,17 @@
-FROM gradle:7.0.2-jdk17 AS build
+FROM openjdk:17-jdk-slim-buster AS builder
+
+RUN apt-get update -y
+RUN apt-get install -y binutils
+
+WORKDIR /app
 
 COPY . .
-RUN gradle bootJar --no-daemon
 
-FROM openjdk:17-jdk-slim
+RUN ./gradlew build -i --stacktrace
+RUN ./gradlew jlink -i --stacktrace
+
+# lightweight image
+FROM debian:stretch-slim
 
 EXPOSE 5424
 
