@@ -4,7 +4,7 @@ plugins {
     id("io.micronaut.test-resources") version "3.7.3"
 }
 
-version = "0.1"
+version = "1"
 group = "com.dm.customer"
 
 repositories {
