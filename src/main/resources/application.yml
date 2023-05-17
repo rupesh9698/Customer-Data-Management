@@ -1,0 +1,46 @@
+micronaut:
+  application:
+    name: customerDataManagement
+  server:
+    port: 5424
+    cors:
+      enabled: true
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
+datasources:
+  default:
+    driverClassName: org.postgresql.Driver
+    db-type: postgres
+    url: jdbc:postgresql://localhost:5432/customer_data_management
+    username: postgres
+    password: Pass@1234
+    dialect: POSTGRES
+netty:
+  default:
+    allocator:
+      max-order: 3
+jpa:
+  default:
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        hbm2ddl:
+          auto: update
+        show_sql: true
+      entity-scan:
+        packages: com.dm.customer.model
+#jpa:
+#  default:
+#    entity-scan:
+#      packages: 'com.dm.customer'
+#  show-sql: true
+#  hibernate:
+#    ddl-auto: update
+#  properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+#jpa.default.properties.hibernate.hbm2ddl.auto: update

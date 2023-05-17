@@ -1,0 +1,77 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.7.3"
+    id("io.micronaut.test-resources") version "3.7.3"
+}
+
+version = "0.1"
+group = "com.dm.customer"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok")
+
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.spring:micronaut-spring-annotation")
+    annotationProcessor("io.micronaut.spring:micronaut-spring-web-annotation")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi:4.8.4")
+
+    implementation("org.testng:testng:7.7.0")
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-http-server")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("net.logstash.logback:logstash-logback-encoder:7.3")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation 'io.micronaut:micronaut-inject-java:3.8.6'
+    //postgres sql Dependency
+    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
+    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
+    implementation("io.micronaut.data:micronaut-data-jdbc")
+
+    testAnnotationProcessor("io.micronaut.spring:micronaut-spring-annotation")
+    testAnnotationProcessor("io.micronaut.spring:micronaut-spring-web-annotation")
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'io.micronaut.test:micronaut-test-junit5:3.9.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.1.1'
+
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("io.micronaut.spring:micronaut-spring-web")
+    runtimeOnly("org.postgresql:postgresql")
+}
+
+
+application {
+    mainClass.set("com.dm.customer.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.dm.customer.*")
+    }
+}
+
+
+
