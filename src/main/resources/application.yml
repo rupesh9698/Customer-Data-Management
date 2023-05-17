@@ -17,9 +17,9 @@ datasources:
   default:
     driverClassName: org.postgresql.Driver
     db-type: postgres
-    url: jdbc:postgresql://localhost:5432/customer_data_management
-    username: postgres
-    password: Pass@1234
+    url: jdbc:postgresql://dpg-chie54l269vf5qdrdhhg-a.singapore-postgres.render.com:5432/customer_data_management
+    username: customer_data_management_user
+    password: 97m5fkEqqhyohT7kkt8v3rGzC0B3KTJa
     dialect: POSTGRES
 netty:
   default:
